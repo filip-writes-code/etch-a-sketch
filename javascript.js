@@ -4,6 +4,7 @@ const containerSize = 600;
 //creates a grid of squares in a container
 function createGrid(resolution) {
     const container = document.querySelector('.container');
+    container.innerHTML = "";
     const squareSize = (containerSize / resolution) + "px";
     container.style.width = containerSize + "px";
     container.style.height = containerSize + "px";
@@ -31,5 +32,16 @@ container.addEventListener("mouseover", (e) => {
     e.target.style.backgroundColor = randomColor();
 })
 
+// event listener for the resolution button
+const resolutionBtn = document.querySelector('.resolution');
+resolutionBtn.addEventListener("click", (e) => {
+    let userInput = prompt("How many squares per side would you like? Max - 100");
+    userInput = Number (userInput);
+    if (Number.isInteger(userInput) && userInput >0 && userInput <= 100) {
+        createGrid(userInput);
+    } else {
+        alert ("There was an error somehwere :/")
+    }
+})
 
-createGrid(16);
+createGrid(4);
